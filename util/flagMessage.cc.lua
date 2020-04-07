@@ -7,7 +7,7 @@
 {{/* CONFIGURATION VARIABLES START */}}
 {{ $reportEmoji := 675512907391434759 }} {{/* ID of report emoji */}}
 {{ $reportChannel := 675513854888771595 }}
-{/* CONFIGURATION VARIABLES END */}
+{{/* CONFIGURATION VARIABLES END */}}
 
 {{ if eq .Reaction.Emoji.ID $reportEmoji }}
 	{{ $isFirst := true }}
@@ -32,4 +32,5 @@
 			"timestamp" currentTime
 		) }}
 	{{ end }}
+	{{ deleteMessageReaction nil .ReactionMessage.ID .User.ID (printf "%s:%d" .Reaction.Emoji.Name $reportEmoji) }}
 {{ end }}
